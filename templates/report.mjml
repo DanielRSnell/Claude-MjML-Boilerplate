@@ -1,0 +1,119 @@
+<mjml>
+  <mj-head>
+    <mj-title>Signal Report</mj-title>
+    <mj-preview>{{ $json.results.length }} new signals received</mj-preview>
+    <mj-attributes>
+      <mj-all font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"></mj-all>
+      <mj-text font-weight="400" font-size="14px" color="#333333" line-height="22px"></mj-text>
+      <mj-section padding="0px"></mj-section>
+    </mj-attributes>
+    <mj-style inline="inline">
+      .signal-card {
+        background: #ffffff;
+        border-left: 4px solid #0066cc;
+        padding: 20px;
+        margin-bottom: 16px;
+        border-radius: 4px;
+      }
+      .badge-issue {
+        background: #dc3545;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .badge-safety {
+        background: #ffc107;
+        color: #333;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .meta-info {
+        color: #666666;
+        font-size: 12px;
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#f5f5f5">
+    <!-- Header -->
+    <mj-section background-color="#0066cc" padding="30px 20px">
+      <mj-column>
+        <mj-text align="center" color="#ffffff" font-size="28px" font-weight="bold">
+          Signal Report
+        </mj-text>
+        <mj-text align="center" color="#ffffff" font-size="16px" padding-top="10px">
+          {{ $json.results.length }} New Signals Received
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Summary Bar -->
+    <mj-section background-color="#ffffff" padding="20px">
+      <mj-column>
+        <mj-text align="center" font-size="13px" color="#666666">
+          Report generated on {{ new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) }}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Signals Loop -->
+    {{ $json.results.map((signal, index) => `
+    <mj-section background-color="#f5f5f5" padding="10px 20px">
+      <mj-column background-color="#ffffff" border-left="4px solid ${signal['Signal Type'][0]?.value === 'Issue' ? '#dc3545' : '#ffc107'}" border-radius="4px" padding="20px">
+
+        <!-- Signal Type Badge and ID -->
+        <mj-text padding-bottom="10px">
+          <span class="badge-${signal['Signal Type'][0]?.value.toLowerCase()}">${signal['Signal Type'][0]?.value || 'Unknown'}</span>
+          <span class="meta-info" style="float: right;">ID: ${signal.id}</span>
+        </mj-text>
+
+        <!-- Message -->
+        <mj-text font-size="16px" font-weight="500" color="#333333" padding-bottom="15px">
+          ${signal.Message}
+        </mj-text>
+
+        <!-- Sender & Location Info -->
+        <mj-text class="meta-info" padding-bottom="5px">
+          <strong>From:</strong> ${signal.Sender[0]?.value || 'Unknown'} (${signal.From})
+        </mj-text>
+        <mj-text class="meta-info" padding-bottom="5px">
+          <strong>Location:</strong> ${signal.City}, ${signal.State}
+        </mj-text>
+        <mj-text class="meta-info" padding-bottom="15px">
+          <strong>Time:</strong> ${new Date(signal['Created on']).toLocaleString('en-US')}
+        </mj-text>
+
+        ${signal.Media && signal.Media.length > 0 ? `
+        <!-- Media Attachment -->
+        <mj-image
+          src="${signal.Media[0].url}"
+          alt="${signal.Media[0].visible_name}"
+          border-radius="4px"
+          padding-top="10px"
+        />
+        <mj-text class="meta-info" align="center" padding-top="5px">
+          📎 ${signal.Media[0].visible_name}
+        </mj-text>
+        ` : ''}
+
+      </mj-column>
+    </mj-section>
+    `).join('') }}
+
+    <!-- Footer -->
+    <mj-section background-color="#f5f5f5" padding="30px 20px">
+      <mj-column>
+        <mj-divider border-color="#dddddd" border-width="1px" padding="0 0 20px 0"></mj-divider>
+        <mj-text align="center" font-size="12px" color="#999999">
+          This is an automated report generated from your signal monitoring system.
+        </mj-text>
+        <mj-text align="center" font-size="12px" color="#999999" padding-top="10px">
+          © 2024 Signal Monitoring System. All rights reserved.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
