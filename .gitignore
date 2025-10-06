@@ -1,9 +1,6 @@
 # Dependencies
 node_modules/
 
-# Output
-output/
-
 # System files
 .DS_Store
 
