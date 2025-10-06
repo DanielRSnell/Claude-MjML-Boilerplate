@@ -1,0 +1,101 @@
+<mjml>
+  <mj-head>
+    <mj-title>Signal Report</mj-title>
+    <mj-attributes>
+      <mj-all font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"></mj-all>
+      <mj-text font-weight="400" font-size="14px" color="#333333" line-height="22px"></mj-text>
+      <mj-section padding="0px"></mj-section>
+    </mj-attributes>
+    <mj-style inline="inline">
+      .badge-issue {
+        background: #dc3545;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .badge-safety {
+        background: #ffc107;
+        color: #333;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .meta-info {
+        color: #666666;
+        font-size: 12px;
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#f5f5f5">
+    <!-- Header -->
+    <mj-section background-color="#0066cc" padding="30px 20px">
+      <mj-column>
+        <mj-text align="center" color="#ffffff" font-size="28px" font-weight="bold">
+          Signal Report
+        </mj-text>
+        <mj-text align="center" color="#ffffff" font-size="16px" padding-top="10px">
+          N8N_RESULTS_COUNT New Signals Received
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Summary Bar -->
+    <mj-section background-color="#ffffff" padding="20px">
+      <mj-column>
+        <mj-text align="center" font-size="13px" color="#666666">
+          Report generated on N8N_CURRENT_DATE
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Single Signal Item Template -->
+    <mj-section background-color="#f5f5f5" padding="10px 20px">
+      <mj-column background-color="#ffffff" border-left="4px solid #0066cc" border-radius="4px" padding="20px">
+
+        <!-- Signal Type Badge and ID -->
+        <mj-text padding-bottom="10px">
+          <span>N8N_SIGNAL_BADGE</span>
+          <span class="meta-info" style="float: right;">ID: N8N_SIGNAL_ID</span>
+        </mj-text>
+
+        <!-- Message -->
+        <mj-text font-size="16px" font-weight="500" color="#333333" padding-bottom="15px">
+          N8N_SIGNAL_MESSAGE
+        </mj-text>
+
+        <!-- Sender & Location Info -->
+        <mj-text padding-bottom="5px" font-size="12px" color="#666666">
+          <strong>From:</strong> N8N_SENDER_NAME (N8N_SENDER_PHONE)
+        </mj-text>
+        <mj-text padding-bottom="5px" font-size="12px" color="#666666">
+          <strong>Location:</strong> N8N_LOCATION
+        </mj-text>
+        <mj-text padding-bottom="15px" font-size="12px" color="#666666">
+          <strong>Time:</strong> N8N_TIMESTAMP
+        </mj-text>
+
+        <!-- Media Attachment Placeholder -->
+        <mj-text font-size="12px" color="#666666">
+          N8N_MEDIA_SECTION
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <!-- Footer -->
+    <mj-section background-color="#f5f5f5" padding="30px 20px">
+      <mj-column>
+        <mj-divider border-color="#dddddd" border-width="1px" padding="0 0 20px 0"></mj-divider>
+        <mj-text align="center" font-size="12px" color="#999999">
+          This is an automated report generated from your signal monitoring system.
+        </mj-text>
+        <mj-text align="center" font-size="12px" color="#999999" padding-top="10px">
+          © 2024 Signal Monitoring System. All rights reserved.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

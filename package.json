@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node build.js",
+    "build:n8n": "node build-n8n.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
